@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Полет със самолет</title>
+   <meta charset="utf-8">
+
+   <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Pangolin&display=swap&subset=cyrillic" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="flight.css"> 
+   <script src="suica.min.js"></script>
+   <script>
+      function main()
+      {
+         p = new Suica();
+         demo(100,1,0.2);
+         //oxyz();
+         background([1,1,1]);
+            
+         a = sphere([0,0,0],10);
+         a.image = new Suica.Image('myEarth.jpg');
+
+         //самолетче
+         objPlane = group([
+       
+         // тяло на самолета
+         spheroid([8,8,8],[5,1.5,1.5]).custom({color:[1,1,1]}),
+
+         //крила
+         spheroid([9.5,8,8],[1.5,5,0.5]).custom({color:[1,1,1]}),
+
+         //прозорци от дясно
+         circle([8,9.6,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([7,9.6,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([6,9.4,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([5,9.2,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}), 
+
+         //прозорци от ляво
+         circle([8,6.5,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([7,6.5,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([6,6.5,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]}),
+         circle([5,6.5,8.5],0.3).custom({color:[0.5,0.8,1], focus:[0,1,0]})
+            ]);
+
+        
+         objPlane;
+         secondPlane = sameAs(objPlane);
+         thirdPlane = sameAs(objPlane);
+        
+         p.nextFrame = loop;
+  }
+   
+   function loop()
+   {
+        t = Suica.time;
+        objPlane.center = [20*Math.cos(2*t),20*Math.sin(2*t),0];
+        secondPlane.center = [40*Math.cos(t),40*Math.sin(t),0];
+        thirdPlane.center = [0,30*Math.sin(t),30*Math.cos(t)];
+    }
+
+    function distance() 
+    {
+       
+    }
+
+   
+   </script>   
+    
+  
+  
+</head>
+<body onload="main()">
+   <div class="introduction">
+      <a id="1"><h1>Полет</h1></a>
+      
+      <p>В днешно време придвижването чрез самолетни полети набра популярност, тъй като това е <b>най-бързият</b> начин за придвижване.
+      В този урок ще ви запозная с двата алгоритъма, с които се запознах във ФМИ.</p>
+
+   </div>
+   <div>
+      <h2>&blacktriangleleft; Методи за намиране на най-кратък път&blacktriangleright;</h2>
+   </div>
+  
+   
+   <div class="tasks">
+         <b>Aлгоритъм на Дийкстра:</b><br>
+         За този алгоритъм ни е нужен граф G(V, A) с N върха и неотрицателни стойности на дъгите, номерирани от 1 до N. Избираме като начален връх върха с номер 1 и ще търсим най-късите пътища от него до всички останали. Връща дърво с най-късите пътища с начало дадения връх.
+         <br>     
+  </div>
+
+  <div class="tasks">
+       <b>A* алгоритъм:</b><br>
+       <b>f(node) = g(node) + h(node)</b><br>
+        g връща цената на изминатия път от началния възел до
+        node, а евристичната функция h връща като резултат
+        приблизителна стойност на цената на оставащата част от пътя
+        от node до целта.<br>
+    </div>
+
+   <p id="conclusion">
+      <b>Тук можете да видите реализацията на Земята и самолетите, които кръжат около нея.</b>
+   </p>
+   <div>
+      <canvas id="myCanvy" width="780" height="350" style="border: solid 1px Black;">
+         Искаме canvas, но няма!
+      </canvas>
+      <p>За изчислението, кой е най-краткият път, който намират самолетчетата докато, моля натиснете бутона.</p>
+      <button onclick="distance()"><b>Най-кратък път:</b></button>
+   </div>
+
+</body>
+</html>

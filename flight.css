@@ -1,0 +1,54 @@
+﻿body
+{
+	width: 640px;
+	margin: auto;
+	padding: 0 20px;
+	background-image: url('sky.jpg');
+	text-align: center;
+	font-family: 'Pangolin', cursive;
+	color: Black;
+}
+
+h2
+{
+	margin: 0;
+	padding: 0.25em 0 0.75em 0;
+	color: Black;
+}
+
+p
+{
+	margin: 0.25em;
+	padding: 0 15px;
+	text-align: justify;
+	font-size: 1.15em;
+	text-indent: 1.5em;
+}
+canvas{
+	border-radius:5px;
+	position: relative;
+	right: 50px;
+	margin:15px;
+}
+div.tasks{
+	width: 100%;
+	border:solid;
+	border-radius:15px;
+	text-align: left;
+	font-family: 'Pangolin', cursive;
+	padding: 10px;
+	margin:10px;
+	z-index: 1;
+
+}
+p#conclusion{
+	font-size: 26px;
+	margin:15px;
+	text-align: center;
+}
+
+button{
+	border-radius: 10px;
+	background-color: #3399FF;
+	padding: 20px;
+}
